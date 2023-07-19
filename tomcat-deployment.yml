@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      containers:
+        - name: tomcat
+          image: tomcat:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CATALINA_OPTS
+              value: "-Xms512m -Xmx1024m"
+          volumeMounts:
+            - mountPath: /usr/local/tomcat/webapps
+              name: tomcat-webapps
+      volumes:
+        - name: tomcat-webapps
+          emptyDir: {}
