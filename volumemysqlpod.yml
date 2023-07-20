@@ -15,4 +15,4 @@ spec:
         # directory location on host
         path: /data
         # this field is optional
-        type: DirectoryOrCreate
+        type: Directory or Create
